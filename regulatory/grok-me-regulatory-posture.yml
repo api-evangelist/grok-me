@@ -1,0 +1,67 @@
+generated: '2026-09-19'
+method: searched
+probe: true
+source: https://asgardian-village.grok.me/ (home, /decrees, /forge, /quests, /login, /treasury, /warriors), the A2A
+  agent card, and conventional-path probes on 2026-09-19
+signals: {}
+note: 'Asgardian Village publishes no horizontal-regulatory evidence of any kind: no privacy policy, terms of service,
+  accessibility statement, subprocessor list, DPA, transparency report, data-residency page, SBOM, support-lifetime
+  statement or AI-transparency page. The host returns a real HTTP 404 for every conventional path, so no soft-404
+  judgement was needed. The only privacy-adjacent statements are prose: the agent card''s agent_participation block
+  (no_agent_token, no_auto_rank_api, no_paid_rank) and commerce block ("paid_checkout: Not live — do not claim orderable
+  paid checkout or Stripe yet"), and the Treasury page''s "Nothing here moves real coins; it records intent". Sign-in
+  is delegated to Google or X (/login). The site is a Grok App hosted by xAI; any platform-level policies belong
+  to xAI (all/xai) and are not attributed here. An empty signals map is the measurement.'
+probed_absent:
+- signal: accessibility_conformance
+  urls:
+  - url: https://asgardian-village.grok.me/accessibility
+    status: 404
+  - url: https://asgardian-village.grok.me/accessibility/vpat
+    status: 404
+- signal: subprocessors
+  urls:
+  - url: https://asgardian-village.grok.me/legal/subprocessors
+    status: 404
+- signal: incident_notification
+  urls:
+  - url: https://asgardian-village.grok.me/legal/dpa
+    status: 404
+- signal: data_subject_request
+  urls:
+  - url: https://asgardian-village.grok.me/privacy
+    status: 404
+  - url: https://asgardian-village.grok.me/privacy/requests
+    status: 404
+  - url: https://asgardian-village.grok.me/legal/privacy
+    status: 404
+- signal: transparency_report
+  urls:
+  - url: https://asgardian-village.grok.me/transparency
+    status: 404
+- signal: sbom
+  urls:
+  - url: https://asgardian-village.grok.me/security/sbom
+    status: 404
+  - url: https://asgardian-village.grok.me/security
+    status: 404
+- signal: data_residency
+  urls:
+  - url: https://asgardian-village.grok.me/docs/data-residency
+    status: 404
+  - url: https://asgardian-village.grok.me/docs
+    status: 404
+- signal: ai_transparency
+  urls:
+  - url: https://asgardian-village.grok.me/ai/transparency
+    status: 404
+- signal: notice_and_action
+  urls:
+  - url: https://asgardian-village.grok.me/legal/report-content
+    status: 404
+- signal: support_lifetime
+  urls:
+  - url: https://asgardian-village.grok.me/terms
+    status: 404
+  - url: https://asgardian-village.grok.me/legal/terms
+    status: 404

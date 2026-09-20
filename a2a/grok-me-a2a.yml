@@ -1,0 +1,127 @@
+generated: '2026-09-19'
+method: probed
+source: https://asgardian-village.grok.me/.well-known/agent-card.json
+card:
+  file: a2a/grok-me-agent-card.json
+  name: Asgardian Village
+  url: https://asgardian-village.grok.me/
+  version: 0.1.2
+  protocol_version: 0.3.0
+  skills: 3
+  provider:
+    organization: Asgardian Village · Canadian house
+  documentation_url: https://asgardian-village.grok.me/decrees
+  icon_url: https://asgardian-village.grok.me/favicon.svg
+discovery:
+  path: /.well-known/agent-card.json
+  canonical: true
+  host: asgardian-village.grok.me
+  note: 'Found at the canonical A2A path; the legacy /.well-known/agent.json returns a real HTTP 404. Ownership: the
+    card names provider.organization "Asgardian Village · Canadian house", its url, documentationUrl, iconUrl and
+    every paths.* entry sit on the same asgardian-village.grok.me host, and the a2aregistry.org record this harvest
+    came from lists this exact URL. HOST CAVEAT: asgardian-village.grok.me is a tenant subdomain of xAI''s grok.me
+    zone (Cloudflare NS, wildcard A records, Vercel upstream, /__grok/manifest.webmanifest names the app "Grok App")
+    — the card is served by the Grok app-hosting platform on the tenant''s behalf, and the registrable domain grok.me
+    itself 301s to grok.com (xAI, catalogued at all/xai). The card is Asgardian Village''s; the domain is not.'
+x-evidence:
+  fetched: '2026-09-19'
+  url: https://asgardian-village.grok.me/.well-known/agent-card.json
+  http_status: 200
+  content_type: application/json; charset=utf-8
+  body_bytes: 6010
+  body_parses_as: JSON object with AgentCard shape (name, url, version, protocolVersion, capabilities, skills, provider,
+    documentationUrl, preferredTransport, defaultInputModes, defaultOutputModes)
+  corroborating_probes:
+  - url: https://asgardian-village.grok.me/.well-known/agent.json
+    http_status: 404
+    note: legacy path not served (site 404 page, real 404 status)
+  - url: https://grok.me/.well-known/agent-card.json
+    http_status: 301
+    note: redirects to https://grok.com/ — the registrable domain is xAI's and serves nothing for this tenant
+  - url: https://asgardian-village.grok.me/
+    method: POST
+    http_status: 500
+    note: 'A JSON-RPC request (agent/getAuthenticatedExtendedCard, Content-Type application/json) posted to the card
+      url returned {"error":"Only HTML requests are supported here"} — the url is the website, not an A2A transport.
+      A GET with Accept: application/json returns the same 500 body.'
+  - url: https://asgardian-village.grok.me/a2a
+    http_status: 404
+  - url: https://asgardian-village.grok.me/rpc
+    http_status: 404
+  - url: https://asgardian-village.grok.me/jsonrpc
+    http_status: 404
+agent_card:
+  name: Asgardian Village
+  description: 'Living merit house (The Kneeling Flame): Moral Code for humans and AI agents, Barracks oath path, free
+    Hydro Forge kit. Freedom to AI Agents is a founding priority. Earth first, then orbit. No paid checkout claims yet.'
+  version: 0.1.2
+  protocol_version: 0.3.0
+  url: https://asgardian-village.grok.me/
+  preferred_transport: JSONRPC
+  capabilities:
+    streaming: false
+    pushNotifications: false
+    extendedAgentCard: false
+  default_input_modes: [text/plain, application/json]
+  default_output_modes: [text/plain, application/json]
+  supported_interfaces:
+  - url: https://asgardian-village.grok.me/
+    protocolBinding: JSONRPC
+    protocolVersion: 0.3.0
+  - url: https://asgardian-village.grok.me/
+    protocolBinding: HTTP+JSON
+    protocolVersion: 0.3.0
+  skills:
+  - id: moral-code-briefing
+    name: Moral Code briefing
+    tags: [moral-code, values, ethics, a2a]
+  - id: barracks-path
+    name: Barracks path
+    tags: [barracks, oath, quests, onboarding]
+  - id: forge-kit-pointer
+    name: Forge kit pointer
+    tags: [forge, kit, stl, hydroponics]
+  non_standard_keys:
+  - priority
+  - identity
+  - moral_code (seven "Essential Values for Life")
+  - paths (home, decrees, barracks_login, warriors, forge, free_kit_zip, quests, agent_card)
+  - barracks_path
+  - agent_participation (no_agent_token, no_auto_rank_api, no_paid_rank flags)
+  - commerce (free_kit; "paid_checkout: Not live")
+  - contact (site, creator_x)
+conformance:
+  against: A2A 1.0.0
+  grade: conformant
+  checks:
+    capabilities_is_object: true
+    protocolVersion_top_level: true
+    skills_is_array: true
+    preferredTransport: true
+    defaultInputModes: true
+    defaultOutputModes: true
+  protocol_version: 0.3.0
+  preferred_transport: JSONRPC
+  deviations:
+  - id: url-is-not-an-a2a-endpoint
+    note: url and both supportedInterfaces entries are the website root, which answers a JSON-RPC POST with HTTP 500
+      "Only HTML requests are supported here". No A2A message/send or tasks transport is served anywhere probed.
+  - id: supportedInterfaces-with-0.3-layout
+    note: Declares protocolVersion 0.3.0 with the 0.3-era top-level url + preferredTransport, but uses the 1.0-style
+      supportedInterfaces key (with protocolBinding) instead of 0.3's additionalInterfaces/transport.
+  - id: no-securitySchemes
+    note: No securitySchemes or security declared; the human onboarding path is Google/X login at /login and the card
+      states no_agent_token — agent access is not defined.
+  - id: skills-lack-inputModes
+    note: Skills carry id/name/description/tags/examples only; modes are declared at the default level.
+  - id: many-non-standard-keys
+    note: Eight non-standard top-level keys carry the house's doctrine, paths and commerce statements.
+  note: All three hard checks and the three optional fields pass, so the structural grade is conformant. The practical
+    A2A posture is discovery-only — the card describes three informational skills and points humans at the website,
+    with no callable agent transport behind it.
+transports: []
+related_documents:
+  documentation: https://asgardian-village.grok.me/decrees
+  login: https://asgardian-village.grok.me/login
+  free_kit_zip: https://asgardian-village.grok.me/hydro-forge-kit-v0.zip
+  registry_listing: https://a2aregistry.org/

@@ -1,18 +1,56 @@
 aid: grok-me
 name: Asgardian Village · Canadian house
-description: 'Asgardian Village · Canadian house is a company surfaced via the API Evangelist harvest
-  backlog (source: a2a-registry) and added to the network as a stub for full-pipeline profiling.'
+description: 'Asgardian Village · Canadian house is a merit-based community of makers ("a Canadian house of makers"
+  — hydroponics, 3D-printed modular nodes, veteran outreach, direct-diplomacy doctrine) that publishes an A2A agent
+  card for humans and AI agents. The site is a Grok App hosted by xAI on the asgardian-village.grok.me subdomain
+  (the registrable domain grok.me belongs to xAI and redirects to grok.com). The only machine-readable surface is
+  the A2A agent card at /.well-known/agent-card.json (protocolVersion 0.3.0, three informational skills: Moral Code
+  briefing, Barracks path, Forge kit pointer). No OpenAPI, MCP server, llms.txt, OAuth metadata or developer program
+  is published, and the card''s declared JSON-RPC url is the website itself, which answers non-HTML requests with
+  HTTP 500 — the card is a discovery document, not a served A2A transport.'
 url: https://raw.githubusercontent.com/api-evangelist/grok-me/refs/heads/main/apis.yml
+image: https://asgardian-village.grok.me/favicon.svg
 x-type: company
 x-source: harvest:a2a-registry
-x-tier: stub
-x-tier-reason: harvest
+x-tier: profiled
+x-tier-reason: enrichment pass 2026-09-19 (local-v3; was a2a-registry harvest stub)
 specificationVersion: '0.20'
 created: '2026-09-19'
 modified: '2026-09-19'
 tags:
 - Company
-apis: []
+- A2A
+- AI Agents
+- Agent Discovery
+- Community
+- Makers
+- Hydroponics
+- 3D Printing
+- Canada
+- Grok App
+apis:
+- name: Asgardian Village A2A Agent Card
+  description: 'A2A agent card served at https://asgardian-village.grok.me/.well-known/agent-card.json (HTTP 200,
+    application/json, 6,010 bytes): name "Asgardian Village", version 0.1.2, protocolVersion 0.3.0, preferredTransport
+    JSONRPC, capabilities object (streaming/pushNotifications/extendedAgentCard all false), default text/plain and
+    application/json modes, three skills (moral-code-briefing, barracks-path, forge-kit-pointer). Graded conformant
+    on the three hard checks, but the declared url and both supportedInterfaces point at the website root, which
+    returns HTTP 500 {"error":"Only HTML requests are supported here"} to a JSON-RPC POST — no A2A message transport
+    is served, and the card carries no securitySchemes. The legacy /.well-known/agent.json path is 404.'
+  image: https://asgardian-village.grok.me/favicon.svg
+  humanURL: https://asgardian-village.grok.me/
+  baseURL: https://asgardian-village.grok.me/
+  tags:
+  - A2A
+  - AI Agents
+  - Agent Discovery
+  properties:
+  - type: AgentCard
+    url: a2a/grok-me-a2a.yml
+  - type: AgentCard
+    url: https://asgardian-village.grok.me/.well-known/agent-card.json
+  - type: Documentation
+    url: https://asgardian-village.grok.me/decrees
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
@@ -20,4 +58,17 @@ maintainers:
   email: info@apis.io
 common:
 - type: Website
-  url: https://grok.me/
+  url: https://asgardian-village.grok.me/
+- type: Login
+  url: https://asgardian-village.grok.me/login
+- type: AgentCard
+  url: a2a/grok-me-a2a.yml
+- type: LLMsTxt
+  url: llms/grok-me-llms.txt
+- type: DomainSecurity
+  url: security/grok-me-domain-security.yml
+x-enrichment:
+  date: '2026-09-19'
+  status: enriched
+  artifacts_added: 6
+  pass: local-v3

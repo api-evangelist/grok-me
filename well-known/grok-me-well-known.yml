@@ -1,0 +1,105 @@
+generated: '2026-09-19'
+method: probed
+source: live GET of each path on 2026-09-19 with a browser User-Agent
+note: 'Three hosts probed. asgardian-village.grok.me (the website and agent-card host) returns a REAL HTTP 404 with
+  the site''s "Not Found" page for every discovery path except the A2A agent card, so no soft-404 judgement was
+  needed; the only well-known document it serves is /.well-known/agent-card.json (recorded in a2a/grok-me-a2a.yml
+  and pointed at with type AgentCard, not WellKnown). grok.me and www.grok.me are xAI''s zone and 301 every path to
+  https://grok.com/ — nothing there belongs to this provider, so the redirects are recorded and not followed. No
+  security.txt, OAuth/OIDC metadata, api-catalog, ai-plugin, UCP/ACP/AAuth or apis.json is published; no WellKnown
+  or SecurityTxt pointer is emitted.'
+hosts:
+- host: asgardian-village.grok.me
+  documents:
+  - path: /.well-known/agent-card.json
+    status: 200
+    file: a2a/grok-me-agent-card.json
+    content_type: application/json; charset=utf-8
+    bytes: 6010
+    note: A2A agent card — graded conformant in a2a/grok-me-a2a.yml
+  - path: /.well-known/agent.json
+    status: 404
+  - path: /.well-known/security.txt
+    status: 404
+  - path: /security.txt
+    status: 404
+  - path: /.well-known/openid-configuration
+    status: 404
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+  - path: /.well-known/oauth-protected-resource
+    status: 404
+  - path: /.well-known/api-catalog
+    status: 404
+  - path: /.well-known/api-catalog.json
+    status: 404
+  - path: /.well-known/ai-plugin.json
+    status: 404
+  - path: /.well-known/ucp.json
+    status: 404
+  - path: /.well-known/acp.json
+    status: 404
+  - path: /.well-known/aauth-resource.json
+    status: 404
+  - path: /.well-known/apis.json
+    status: 404
+  - path: /apis.json
+    status: 404
+  - path: /apis.yml
+    status: 404
+  - path: /llms.txt
+    status: 404
+  - path: /openapi.json
+    status: 404
+  - path: /openapi.yaml
+    status: 404
+  - path: /swagger.json
+    status: 404
+  - path: /api-docs
+    status: 404
+  - path: /robots.txt
+    status: 404
+  - path: /sitemap.xml
+    status: 404
+  - path: /mcp
+    status: 404
+  - path: /__grok/manifest.webmanifest
+    status: 200
+    content_type: application/manifest+json
+    bytes: 308
+    note: PWA manifest named "Grok App" — platform evidence (xAI Grok app builder), not a provider discovery document;
+      not saved
+- host: grok.me
+  documents:
+  - path: /.well-known/security.txt
+    status: 301
+    note: 301 -> https://grok.com/ (xAI); not followed
+  - path: /.well-known/openid-configuration
+    status: 301
+    note: 301 -> https://grok.com/
+  - path: /.well-known/oauth-authorization-server
+    status: 301
+    note: 301 -> https://grok.com/
+  - path: /.well-known/oauth-protected-resource
+    status: 301
+    note: 301 -> https://grok.com/
+  - path: /.well-known/api-catalog
+    status: 301
+    note: 301 -> https://grok.com/
+  - path: /.well-known/ai-plugin.json
+    status: 301
+    note: 301 -> https://grok.com/
+  - path: /.well-known/apis.json
+    status: 301
+    note: 301 -> https://grok.com/
+  - path: /apis.json
+    status: 301
+    note: 301 -> https://grok.com/
+  - path: /.well-known/agent-card.json
+    status: 301
+    note: 301 -> https://grok.com/
+- host: www.grok.me
+  documents:
+  - path: /
+    status: 301
+    note: 301 -> https://grok.com/ — same xAI redirect as the apex; per-path probes not repeated

@@ -1,0 +1,21 @@
+generated: '2026-09-19'
+method: probed
+source: live DNS/TLS/HTTP probes of apis.yml + OpenAPI hosts
+note: 'The TLS/HSTS row is the tenant host asgardian-village.grok.me and is what a client of this provider sees. The
+  domains[] row is the registrable domain grok.me, which is xAI''s Cloudflare zone (Grok app hosting; grok.me 301s to
+  grok.com) — its DNSSEC/CAA/SPF/DMARC posture belongs to the platform operator (all/xai), not to Asgardian Village,
+  which controls no DNS of its own.'
+hosts:
+- host: asgardian-village.grok.me
+  https: true
+  tls_version: TLSv1.3
+  cert_expires: Nov 18 05:18:32 2026 GMT
+  hsts: true
+  hsts_max_age: 31536000
+domains:
+- domain: grok.me
+  dnssec: false
+  caa: []
+  spf: false
+  dmarc: true
+  dmarc_policy: reject
