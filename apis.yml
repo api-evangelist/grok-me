@@ -50,7 +50,6 @@ apis:
     is served, and the card carries no securitySchemes. The legacy /.well-known/agent.json path is 404.'
   image: https://asgardian-village.grok.me/favicon.svg
   humanURL: https://asgardian-village.grok.me/
-  baseURL: https://asgardian-village.grok.me/
   tags:
   - A2A
   - AI Agents
@@ -83,3 +82,10 @@ x-enrichment:
   status: enriched
   artifacts_added: 6
   pass: local-v3
+x-a2a:
+  verified: true
+  probed: '2026-09-26'
+  url: "https://asgardian-village.grok.me/.well-known/agent-card.json"
+  grade: "conformant"
+  protocol_version: "0.3.0"
+  control: 500
